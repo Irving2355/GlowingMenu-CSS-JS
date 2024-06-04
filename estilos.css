@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --ancho: 500px;
+    --alto: 500px;
+    --itmw: 100px;
+    --itmh: 100px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #151515;
+}
+
+.menu{
+    position: relative;
+    width: var(--ancho);
+    height: var(--alto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -100px;/*++++++++++++++++++*/
+}
+
+.menu li{
+    position: absolute;
+    left: 0px;
+    list-style: none;
+    transform-origin: calc(var(--ancho) /1.5);
+    transition: 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(0deg) translateX(220px);
+}
+
+.menu.active li{
+    transform: rotate(calc(360deg / 8 * var(--i)));
+    left: -10px;
+    top: 250px;
+}
+
+.menu li a{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 200px;
+    height: 200px;
+    font-size: 4em;
+    border-radius: 50%;
+    transform: rotate(calc(360deg / -8 * var(--i)));
+    color: transparent;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+.menu.active li a{
+    color: var(--clr);
+}
+
+.menu li a::before{
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--clr);
+    transform: rotate(calc(var(--i) * 90deg)) translate(0.px,100px);
+    transition: height 0.5s, width 0.5s, transform 0.5s;
+    transition-delay: 0s,0s,0s;
+}
+
+.menu.active li a::before{
+    width: var(--itmw);
+    height: var(--itmh);
+    top: -19px;/**************+*/
+    border: 2px solid var(--clr);
+    box-sizing: border-box;
+    background: #151515;
+    transform: rotate(calc(var(--i) * 90deg)) translate(0px,0px);
+    transition: transform 0.5s, height 0.5s, width 0.5s;
+    transition-delay: 1s,1.5s,1.5s;
+    rotate: 135deg;
+}
+
+.menu.active li:hover a::before{
+    background: var(--clr);
+    color: #151515;
+    box-shadow: 0 0 10px var(--clr),
+        0 0 30px var(--clr),
+        0 0 50px var(--clr);
+}
+
+.menu li a::after{
+    content: '';
+    position: absolute;
+    left: 50px;
+    width: 20px;
+    height: 2px;
+    background: var(--clr);
+    z-index: -1;
+    transform: rotate(calc(var(--i) * 0deg)) translate(15px,30px);
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    opacity: 0;
+}
+
+.menu.active li a::after{
+    left: 10px;
+    top: 30px;/******************/
+    width: 180px;
+    transform: rotate(calc(var(--i) * 45deg)) translate(50px,0px);
+    transition-delay: 0.5s;
+    opacity: 1;
+}
+
+.menu.active li:hover a ion-icon{
+    position: relative;
+    color: #151515;
+    z-index: 100000;
+}
+
+.menuToggle{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    color: #fff;
+    display: flex;
+    left: 220px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 5em;
+    transition: transform 1.5s;
+}
+
+.menu.active .menuToggle{
+    transform: rotate(315deg);
+    top: 180px;/*++++++++++++++++++++++++++++++++*/
+}
